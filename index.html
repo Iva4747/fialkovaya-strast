@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фиалковая страсть — коллекция миниатюрных фиалок Натальи Тыриной</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+			--primary: #9b8ec4;
+			--primary-soft: #9b8ec4;
+            --bg: #f8f5ff;
+            --white: #ffffff;
+            --text: #2d2a26;
+            --text-light: #6b6560;
+            --border: #e8d7f5;
+            --radius: 16px;
+            --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, .logo, .site-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+        }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        /* Шапка */
+        header {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.6rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Герой */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 70px;
+            background: linear-gradient(165deg, #f5f1fa 0%, #fdfbf8 50%, #f7f3ed 100%);
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 60px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            color: #4a3b5c;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--primary-soft);
+            margin-bottom: 18px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto 35px;
+            font-weight: 400;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 34px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: -0.3px;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: #5c4a82; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(109,91,152,0.2); }
+
+        /* О коллекции */
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            color: #4a3b5c;
+            margin: 50px 0 30px;
+            letter-spacing: -0.5px;
+        }
+        .about-text {
+            max-width: 680px;
+            margin: 0 auto 60px;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        /* Галерея-мозаика */
+        .masonry {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 16px;
+            margin: 40px 0 60px;
+        }
+        .masonry-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #f0ecf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-soft);
+        }
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .masonry-item:hover img { transform: scale(1.05); }
+        .masonry-item.large { grid-column: span 2; grid-row: span 2; }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px 24px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            }
+            .nav-links.open { display: flex; }
+            .hero { padding: 50px 16px 40px; border-radius: 0 0 32px 32px; }
+            .masonry { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+            .masonry-item.large { grid-column: span 2; grid-row: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🌿 Фиалковая страсть 🌿</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="articles.html">Статьи</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Фиалковая страсть</h1>
+            <p class="subtitle">Коллекция Натальи Тыриной</p>
+            <p>Коллекция миниатюрных фиалок, выращенных с любовью и вниманием к каждой розетке.</p>
+            <a href="catalog.html" class="btn">Смотреть каталог</a>
+        </section>
+        <div class="container">
+            <h2 class="section-title">О коллекции</h2>
+            <p class="about-text">
+                Добро пожаловать в мир миниатюрных фиалок! Меня зовут Наталья Тырина, и я с огромной любовью собираю и выращиваю эти маленькие, но невероятно красивые растения. 
+                Здесь вы найдёте сорта из моей личной коллекции, которые я готова предложить в виде листовых черенков, а также подрощенные детки и стартеры. 
+                Все фотографии на сайте сделаны мной. 
+                Заходите в каталог, читайте статьи по уходу — и пусть фиалковая страсть захватит и вас!
+            </p>
+        </div>
+        <!-- Галерея-мозаика -->
+        <div class="container">
+            <div class="masonry">
+                <div class="masonry-item large">
+                    <img src="images/Н-Игра_в_Бисер.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/ЛЕ-Polcagris.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/HuntersControlledChaos.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/Rob's_Monkeyshines.jpg" alt="Описание">
+                </div>
+				<div class="masonry-item">
+                    <img src="images/ML-Мама_Ирочка.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item large">
+                    <img src="images/Hunters_Coral_Garess.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/Оptimara_Little_Trio.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/Сорт-ЦМ-Марина_Цветаева.jpg" alt="Описание">
+                </div>
+                <div class="masonry-item">
+                    <img src="images/Emerald_Bell.jpg" alt="Описание">
+                </div>
+				<div class="masonry-item ">
+                    <img src="images/Sugar_Plum.jpg" alt="Описание">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Фиалковая страсть — коллекция Натальи Тыриной</p>
+    </footer>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

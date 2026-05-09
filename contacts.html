@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Фиалковая страсть</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9b8ec4;
+			--primary-soft: #9b8ec4;
+            --bg: #f8f5ff;
+            --white: #ffffff;
+            --text: #2d2a26;
+            --text-light: #6b6560;
+            --border: #e8e3dd;
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        h1{ font-family: 'Playfair Display', Georgia, serif; }
+        .container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .logo { font-size: 1.6rem; color: var(--primary); text-decoration: none; font-family: 'Playfair Display', Georgia, serif; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-light); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; }
+
+        .page-title { text-align: center; margin: 40px 0 30px; font-size: 2.4rem; color: #4a3b5c; }
+        .contact-info { margin-bottom: 30px; }
+        .contact-info p { margin-bottom: 12px; font-size: 1.05rem; }
+        .contact-info a { color: var(--primary); text-decoration: none; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: 500; }
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--white);
+        }
+        textarea { min-height: 120px; resize: vertical; }
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 14px 34px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn:hover { background: #5c4a82; }
+
+        footer { text-align: center; padding: 30px; color: #aaa; border-top: 1px solid var(--border); margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; right: 0; background: var(--white); padding: 20px; }
+            .nav-links.open { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🌿 Фиалковая страсть 🌿</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="articles.html">Статьи</a></li>
+                <li><a href="contacts.html" class="active">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">Контакты</h1>
+        <div class="contact-info">
+            <p><strong>Наталья Тырина</strong></p>
+            <p><strong>Город:</strong> Рязань</p>
+            <p><strong>VK: https://vk.ru/fialokovaya_strast</strong></p>
+			<p><strong>Доставка через Wildberries (WB-track)</strong></p>
+        </div
+    </main>
+
+    <footer><p>© 2026 Фиалковая страсть — коллекция Натальи Тыриной</p></footer>
+</body>
+</html>

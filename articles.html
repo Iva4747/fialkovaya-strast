@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи — Фиалковая страсть</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9b8ec4;
+			--primary-soft: #9b8ec4;
+            --bg: #f8f5ff;
+            --white: #ffffff;
+            --text: #2d2a26;
+            --text-light: #6b6560;
+            --border: #e8e3dd;
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.6rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; }
+
+        .page-title { text-align: center; margin: 40px 0 30px; font-size: 2.4rem; color: #4a3b5c; }
+
+        .articles-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 50px; }
+        .article-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        .article-card:hover { border-color: var(--primary-soft); transform: translateY(-3px); }
+        .article-card h3 { color: #4a3b5c; margin-bottom: 6px; }
+        .article-card p { color: var(--text-light); font-size: 0.9rem; }
+
+        .article-full {
+            display: none;
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 50px;
+        }
+        .article-full.open { display: block; }
+        .article-full h2 {
+            font-size: 1.8rem;
+            color: #4a3b5c;
+            margin-bottom: 20px;
+        }
+        .article-full .content {
+            color: var(--text-light);
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+        .article-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+        .article-gallery img {
+            width: 100%;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .article-gallery img:hover { transform: scale(1.03); }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .back-btn:hover { text-decoration: underline; }
+
+        footer { text-align: center; padding: 30px; color: #aaa; border-top: 1px solid var(--border); }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; right: 0; background: var(--white); padding: 20px 24px; }
+            .nav-links.open { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🌿 Фиалковая страсть</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="articles.html" class="active">Статьи</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">Статьи и советы</h1>
+
+        <div class="articles-list" id="articlesList"></div>
+
+        <div class="article-full" id="articleFull">
+            <h2 id="articleTitle"></h2>
+            <div class="article-gallery" id="articleGallery"></div>
+            <div class="content" id="articleContent"></div>
+            <button class="back-btn" id="backBtn">← Назад к списку статей</button>
+        </div>
+    </main>
+
+    <footer><p>© 2026 Фиалковая страсть — коллекция Натальи Тыриной</p></footer>
+
+    <script src="data.js"></script>
+    <script>
+        const listDiv = document.getElementById('articlesList');
+        const fullDiv = document.getElementById('articleFull');
+        const titleEl = document.getElementById('articleTitle');
+        const contentEl = document.getElementById('articleContent');
+        const galleryEl = document.getElementById('articleGallery');
+        const backBtn = document.getElementById('backBtn');
+
+        function showList() {
+            listDiv.style.display = 'flex';
+            fullDiv.classList.remove('open');
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function openArticle(index) {
+            const article = articlesData[index];
+            if (!article) return;
+            titleEl.textContent = article.title;
+            contentEl.textContent = article.content;
+
+            // Галерея
+            if (article.images && article.images.length > 0) {
+                galleryEl.innerHTML = article.images.map(img => 
+                    `<img src="${img}" alt="Фото к статье" onerror="this.style.display='none'">`
+                ).join('');
+                galleryEl.style.display = 'grid';
+            } else {
+                galleryEl.style.display = 'none';
+            }
+
+            listDiv.style.display = 'none';
+            fullDiv.classList.add('open');
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function renderArticles() {
+            if (typeof articlesData === 'undefined' || articlesData.length === 0) {
+                listDiv.innerHTML = '<p style="text-align:center; color: var(--text-light);">Статьи скоро появятся.</p>';
+                return;
+            }
+            listDiv.innerHTML = articlesData.map((a, i) => `
+                <div class="article-card" onclick="openArticle(${i})">
+                    <h3>${a.title}</h3>
+                    <p>${a.preview}</p>
+                </div>
+            `).join('');
+        }
+
+        backBtn.addEventListener('click', showList);
+        document.addEventListener('DOMContentLoaded', renderArticles);
+
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
