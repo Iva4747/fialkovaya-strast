@@ -440,7 +440,7 @@ if (currentTab === 'violets') {
     grid.innerHTML = pageItems.map(v => `
         <div class="card" data-type="violet" data-id="${v.id}" onclick="openModal('violet', ${v.id})">
             <div class="card-img">
-                <img src="${v.image || ''}" alt="${v.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--primary-soft);background:#f0ecf5\\'>🌸</div>'">
+                <img src="${v.image || ''}" alt="${v.name}" onerror="this.src=''; this.alt='🌸'; this.style.objectFit='none'; this.style.fontSize='3rem'; this.style.background='#f0ecf5'"
             </div>
             <div class="card-body">
                 <h3>${v.name}</h3>
@@ -484,23 +484,18 @@ if (currentTab === 'violets') {
             }
         }
 
-        function openModal(type, id) {
-    if (type !== 'violet') return; // для деток модалка не открывается
-    const item = violetDataMini.find(v => v.id === id);
-    if (!item) return;
+                function openModal(type, id) {
+            if (type !== 'violet') return;
+            const item = violetDataMini.find(v => v.id === id);
+            if (!item) return;
 
-    document.getElementById('modalImg').src = item.image || '';
-    document.getElementById('modalName').textContent = item.name;
-    document.getElementById('modalPrice').textContent = item.price ? item.price + ' ₽' : 'Цена по запросу';
-    document.getElementById('modalDesc').textContent = item.description || '';
+            document.getElementById('modalImg').src = item.image || '';
+            document.getElementById('modalName').textContent = item.name;
+            document.getElementById('modalPrice').textContent = item.price ? item.price + ' ₽' : 'Цена по запросу';
+            document.getElementById('modalDesc').textContent = item.description || '';
 
-        modalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-		}
-
-        function closeModal() {
-            modalOverlay.classList.remove('open');
-            document.body.style.overflow = '';
+            modalOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
         function switchTab(tab) {
