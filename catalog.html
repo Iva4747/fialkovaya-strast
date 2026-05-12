@@ -436,17 +436,31 @@
             const start = (currentPage - 1) * ITEMS_PER_PAGE;
             const pageItems = filtered.slice(start, start + ITEMS_PER_PAGE);
 
-grid.innerHTML = `
-    <div style="grid-column: 1 / -1; background: var(--white); border-radius: var(--radius); padding: 24px 28px; border: 1px solid var(--border);">
-        <p style="margin-bottom: 12px; color: var(--text-light); font-size: 0.95rem;">
-            <strong>Детки и стартеры в наличии</strong><br>
-            <span style="font-size: 0.85rem;">Цена от 250 до 350 ₽, зависит от сорта и размера.</span>
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 20px;">
-            ${pageItems.map(v => `<span style="font-size: 0.9rem; color: var(--text);">🌸 ${v.name}</span>`).join('')}
+if (currentTab === 'violets') {
+    grid.innerHTML = pageItems.map(v => `
+        <div class="card" data-type="violet" data-id="${v.id}" onclick="openModal('violet', ${v.id})">
+            <div class="card-img">
+                <img src="${v.image || ''}" alt="${v.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--primary-soft);background:#f0ecf5\\'>🌸</div>'">
+            </div>
+            <div class="card-body">
+                <h3>${v.name}</h3>
+                <p class="price">${v.price ? v.price + ' ₽' : 'Цена по запросу'}</p>
+            </div>
         </div>
-    </div>
-`;
+    `).join('');
+} else {
+    grid.innerHTML = `
+        <div style="grid-column: 1 / -1; background: var(--white); border-radius: var(--radius); padding: 24px 28px; border: 1px solid var(--border);">
+            <p style="margin-bottom: 12px; color: var(--text-light); font-size: 0.95rem;">
+                <strong>Детки и стартеры в наличии</strong><br>
+                <span style="font-size: 0.85rem;">Цена от 250 до 350 ₽, зависит от сорта и размера.</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 20px;">
+                ${pageItems.map(v => `<span style="font-size: 0.9rem; color: var(--text);">🌸 ${v.name}</span>`).join('')}
+            </div>
+        </div>
+    `;
+}
 
             if (currentTab === 'violets') {
                 violetCounter.textContent = `Найдено: ${filtered.length} сортов`;
@@ -480,13 +494,9 @@ grid.innerHTML = `
     document.getElementById('modalPrice').textContent = item.price ? item.price + ' ₽' : 'Цена по запросу';
     document.getElementById('modalDesc').textContent = item.description || '';
 
-    modalOverlay.classList.add('open');
+        modalOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
 		}
-
-            modalOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
 
         function closeModal() {
             modalOverlay.classList.remove('open');
