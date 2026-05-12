@@ -99,16 +99,24 @@
             line-height: 1.2;
         }
         .hero .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #4a3b5c;
     margin-bottom: 18px;
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
-    background: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
     display: inline-block;
-    padding: 6px 24px;
-    border-radius: 30px;
-    backdrop-filter: blur(4px);
+    padding: 0 20px;
+    position: relative;
+		}
+.hero .subtitle::before,
+.hero .subtitle::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: #b8a9d0;
+    margin: 8px auto;
 		}
         .hero p {
             font-size: 1.15rem;
